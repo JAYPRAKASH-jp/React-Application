@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import Navbar from './Components/Navbar';
 import News from './Components/News';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import LoadingBar from 'react-top-loading-bar'
 //news Api key : 3aa9ba47c73e446988df073f6d82a4a3
 export default class App extends Component {
 
@@ -14,6 +14,11 @@ export default class App extends Component {
     <div>
       <BrowserRouter>
          <Navbar/>
+         <LoadingBar
+          color='#f11946'
+          progress={10}
+          //onLoaderFinished={() => setProgress(0)}
+        />
         <Routes>
             <Route exact path="/business" element={<News key="business" pageSize={5}  catagories="business" />}/>
             <Route exact path="/" element={<News key="home" pageSize={5}  catagories="general" />}/>
