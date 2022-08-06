@@ -1,38 +1,41 @@
 import axios from 'axios'
 
-export default class Apiresp {
+import React, { Component } from 'react'
 
-    URL_ALL_EMP_DATA='http://localhost:8080/getAllEmp';
-     URL_REGISTER_EMP='http://localhost:8080/registerEmp';
-    
-    
-     getAllEmp= () => {
+const URL_ALL_EMP_DATA='http://localhost:8080/getAllEmp';
+const URL_REGISTER_EMP='http://localhost:8080/registerEmp';
+  
+const response=null;
+class ApiResp extends Component {
+   
+  
+   welcome(){ 
+        return "Hello Jay";
+   }
+
+     getAllEmp(){
         axios.get(URL_ALL_EMP_DATA).then((Response) =>{
         console.log(Response.data)
-        })
-    } 
-    
-     registerEmp =(body) => {
-        // const body={
-        //     "lastname" :"Prakash1",
-        //     "firstname" : "Jay1",
-        //     "address" : "Hajipur Bihar 844116",
-        //     "email":"gmail",
-        //     "city" : "Vaishali",
-        //     "phone" : "123456780"
-        //     }
-          
-          
-          axios({  
-            method: 'post',  
-            url: URL_REGISTER_EMP,  
-            data: body
-          }).then((Response) =>{
-              console.log(Response.data)
-          }) 
-    }
+        response=Response.data;
+      })
 
-    
+      return response;
+  } 
+  
+  async registerEmp(body){   
+        axios({  
+          method: 'post',  
+          url: URL_REGISTER_EMP,  
+          data: body
+        }).then((Response) =>{
+            console.log(JSON.stringify(Response.data))
+            response=Response.data;
+        }) 
+      return response;
+  }
 }
+
+export default new ApiResp();
+
   
   
